@@ -9,15 +9,16 @@ import org.springframework.web.bind.annotation.*;
 @FeignClient(name = "InternalQrCodeController", url = "http://tomcat-twentyfive-db:8091/twentyfive-db/qr_code")
 public interface InternalQrCodeController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/allByIdUser")
-    Page<QrCodeObject> getAllQrCodeByIdUser(@RequestParam(defaultValue = "0") int page,
-                                            @RequestParam(defaultValue = "10") int size);
+    @RequestMapping(method = RequestMethod.GET, value = "/allByUsername")
+    Page<QrCodeObject> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
+                                              @RequestParam(defaultValue = "10") int size,
+                                              @RequestParam("username") String username);
 
     @RequestMapping(method = RequestMethod.GET, value = "/qrCodeObjectById/{idQrCode}")
     QrCodeObject getQrCodeById(@PathVariable String idQrCode);
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
-    QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject);
+    QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
 
     @RequestMapping(method = RequestMethod.GET, value = "/generateQRCode/{codeText}/{description}")
     byte[] generateQrCode(@PathVariable String codeText, @PathVariable String description);
@@ -26,10 +27,10 @@ public interface InternalQrCodeController {
     QrCodeObject deleteQrCode(@PathVariable String idQrCode);
 
     @RequestMapping(method = RequestMethod.POST, value = "/generateAndDownloadQRCode")
-    QrCodeObject download(@RequestBody QrCodeObject qrCodeObject);
+    Object download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update/{idQrCode}")
-    QrCodeObject updateQrCode(@PathVariable String idQrCode ,@RequestBody QrCodeObject qrCodeObject);
+    QrCodeObject updateQrCode(@PathVariable String idQrCode, @RequestBody QrCodeObject qrCodeObject);
 
     @RequestMapping(method = RequestMethod.GET, value = "/download/{idQrCode}")
     ResponseImage downloadQrCodeBase64(@PathVariable String idQrCode);

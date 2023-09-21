@@ -21,11 +21,11 @@ public class QrCodeController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @GetMapping("/allByIdUser")
+    @GetMapping("/allByUsername")
     public ResponseEntity<Object> getAllQrCodeByIdUser(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "10") int size) {
         String username = authenticationService.getUsername();
-        Page<QrCodeObject> result = qrCodeController.getAllQrCodeByIdUser(page, size);
+        Page<QrCodeObject> result = qrCodeController.getAllQrCodeByUsername(page, size, username);
         return ResponseEntity.ok().body(result);
     }
 
@@ -39,7 +39,7 @@ public class QrCodeController {
     @PostMapping("/save")
     public ResponseEntity<Object> saveQrCode(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        QrCodeObject result = qrCodeController.saveQrCode(qrCodeObject);
+        QrCodeObject result = qrCodeController.saveQrCode(qrCodeObject, username);
         return ResponseEntity.ok().body(result);
     }
 
@@ -60,7 +60,7 @@ public class QrCodeController {
     @PostMapping("/generateAndDownloadQRCode")
     public ResponseEntity<Object> download(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        QrCodeObject result = qrCodeController.download(qrCodeObject);
+        Object result = qrCodeController.download(qrCodeObject, username);
         return ResponseEntity.ok().body(result);
     }
 
