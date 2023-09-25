@@ -22,7 +22,7 @@ public class QrCodeController {
     private AuthenticationService authenticationService;
 
     @GetMapping("/allByUsername")
-    public ResponseEntity<Object> getAllQrCodeByIdUser(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Object> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "10") int size) {
         String username = authenticationService.getUsername();
         Page<QrCodeObject> result = qrCodeController.getAllQrCodeByUsername(page, size, username);
@@ -50,7 +50,7 @@ public class QrCodeController {
         return ResponseEntity.ok().body(result);
     }
 
-    @DeleteMapping("/deleteQrCode/{idQrCode}")
+    @DeleteMapping("/delete/{idQrCode}")
     public ResponseEntity<Object> deleteQrCode(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
         QrCodeObject result = qrCodeController.deleteQrCode(idQrCode);

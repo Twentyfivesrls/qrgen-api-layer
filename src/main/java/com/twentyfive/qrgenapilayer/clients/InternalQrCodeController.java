@@ -23,7 +23,7 @@ public interface InternalQrCodeController {
     @RequestMapping(method = RequestMethod.GET, value = "/generateQRCode/{codeText}/{description}")
     byte[] generateQrCode(@PathVariable String codeText, @PathVariable String description);
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteQrCode/{idQrCode}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{idQrCode}")
     QrCodeObject deleteQrCode(@PathVariable String idQrCode);
 
     @RequestMapping(method = RequestMethod.POST, value = "/generateAndDownloadQRCode")
