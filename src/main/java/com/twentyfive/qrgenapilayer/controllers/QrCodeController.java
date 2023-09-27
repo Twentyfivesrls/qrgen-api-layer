@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/qr_code")
 @CrossOrigin(origins = "*")
@@ -33,6 +35,12 @@ public class QrCodeController {
     public ResponseEntity<Object> getQrCodeById(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
         QrCodeObject result = qrCodeController.getQrCodeById(idQrCode);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<Object> all() {
+        List<QrCodeObject> result = qrCodeController.all();
         return ResponseEntity.ok().body(result);
     }
 

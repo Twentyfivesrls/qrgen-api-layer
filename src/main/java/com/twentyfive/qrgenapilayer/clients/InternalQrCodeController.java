@@ -6,6 +6,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @FeignClient(name = "InternalQrCodeController", url = "http://tomcat-twentyfive-db:8091/twentyfive-db/qr_code")
 public interface InternalQrCodeController {
 
@@ -16,6 +18,9 @@ public interface InternalQrCodeController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/qrCodeObjectById/{idQrCode}")
     QrCodeObject getQrCodeById(@PathVariable String idQrCode);
+
+    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    List<QrCodeObject> all();
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
