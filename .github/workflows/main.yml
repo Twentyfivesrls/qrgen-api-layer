@@ -29,8 +29,24 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }}  >> ~/.ssh/known_hosts
 
+      - name: Create dist_tomcat folder
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd ..
+            mkdir -p actions
+            cd actions
+            mkdir -p dist_tomcat
+            cd dist_tomcat
+            mkdir -p ${{ secrets.SSH_PROJECT_NAME }}
+            cd ${{ secrets.SSH_PROJECT_NAME }}
+
       - name: Move build to server with rsync
-        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/qrgen-api-layer.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/actions/dist_tomcat/qrgen-api-layer
+        run: rsync -avz -e "ssh -p ${{ secrets.SSH_PORT }}" ./target/${{ secrets.SSH_PROJECT_NAME }}.war ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/actions/dist_tomcat/${{ secrets.SSH_PROJECT_NAME }}
 
       - name: Move data inside Tomcat Container
         uses: appleboy/ssh-action@master
@@ -40,5 +56,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /actions/dist_tomcat/qrgen-api-layer
-            docker cp ./ tomcat-qrgen-apilayer:/usr/local/tomcat/webapps
+            cd /actions/dist_tomcat/${{ secrets.SSH_PROJECT_NAME }}
+            docker cp ./ ${{ secrets.SSH_CONTAINER }}:/usr/local/tomcat/webapps
+
+
