@@ -2,7 +2,7 @@ package com.twentyfive.qrgenapilayer.controllers;
 
 import com.twentyfive.authorizationcontroller.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrCodeController;
-import com.twentyfive.twentyfivemodel.dto.ResponseImage;
+import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
 import com.twentyfive.twentyfivemodel.models.qrGenModels.QrCodeObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
