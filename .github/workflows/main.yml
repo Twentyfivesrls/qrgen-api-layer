@@ -40,5 +40,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /actions/dist_tomcat/twentyfively-api-layer
+            cd /actions/dist_tomcat/qrgen-api-layer
             docker cp ./ tomcat-qrgen-apilayer:/usr/local/tomcat/webapps
