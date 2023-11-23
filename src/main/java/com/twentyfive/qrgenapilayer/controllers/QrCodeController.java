@@ -40,7 +40,8 @@ public class QrCodeController {
 
     @GetMapping("/all")
     public ResponseEntity<Object> all() {
-        List<QrCodeObject> result = qrCodeController.all();
+        String username = authenticationService.getUsername();
+        List<QrCodeObject> result = qrCodeController.all(username);
         return ResponseEntity.ok().body(result);
     }
 

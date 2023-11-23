@@ -20,7 +20,7 @@ public interface InternalQrCodeController {
     QrCodeObject getQrCodeById(@PathVariable String idQrCode);
 
     @RequestMapping(method = RequestMethod.GET, value = "/all")
-    List<QrCodeObject> all();
+    List<QrCodeObject> all(@RequestParam("username") String username);
 
     @RequestMapping(method = RequestMethod.POST, value = "/save")
     QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
