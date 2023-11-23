@@ -24,7 +24,7 @@ public class QrCodeController {
     private AuthenticationService authenticationService;
 
     @GetMapping("/allByUsername")
-    public ResponseEntity<Object> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Page<QrCodeObject>> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
                                                     @RequestParam(defaultValue = "10") int size) {
         String username = authenticationService.getUsername();
         Page<QrCodeObject> result = qrCodeController.getAllQrCodeByUsername(page, size, username);
