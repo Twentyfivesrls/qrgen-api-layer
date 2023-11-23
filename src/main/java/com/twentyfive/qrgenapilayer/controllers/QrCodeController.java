@@ -60,7 +60,7 @@ public class QrCodeController {
     }
 
     @DeleteMapping("/delete/{idQrCode}")
-    public ResponseEntity<Object> deleteQrCode(@PathVariable String idQrCode) {
+    public ResponseEntity<QrCodeObject> deleteQrCode(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
         qrCodeController.deleteQrCode(idQrCode);
         return ResponseEntity.ok().build();
