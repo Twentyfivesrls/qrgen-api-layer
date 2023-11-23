@@ -1,6 +1,6 @@
 package com.twentyfive.qrgenapilayer.controllers;
 
-import com.twentyfive.authorizationcontroller.services.AuthenticationService;
+import com.twentyfive.authorizationflow.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrCodeController;
 import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
 import com.twentyfive.twentyfivemodel.models.qrGenModels.QrCodeObject;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class QrCodeController {
 
     @GetMapping("/allByUsername")
     public ResponseEntity<Page<QrCodeObject>> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
-                                                    @RequestParam(defaultValue = "10") int size) {
+                                                                     @RequestParam(defaultValue = "10") int size) {
         String username = authenticationService.getUsername();
         Page<QrCodeObject> result = qrCodeController.getAllQrCodeByUsername(page, size, username);
         return ResponseEntity.ok().body(result);
