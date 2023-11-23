@@ -1,6 +1,6 @@
 package com.twentyfive.qrgenapilayer.controllers;
 
-import com.twentyfive.authorizationcontroller.services.AuthenticationService;
+import com.twentyfive.authorizationflow.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrStatisticsController;
 import com.twentyfive.twentyfivemodel.models.qrGenModels.QrStatistics;
 import org.springframework.beans.factory.annotation.Autowired;
