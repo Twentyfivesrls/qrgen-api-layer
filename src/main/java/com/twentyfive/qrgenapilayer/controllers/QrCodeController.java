@@ -62,8 +62,8 @@ public class QrCodeController {
     @DeleteMapping("/delete/{idQrCode}")
     public ResponseEntity<Object> deleteQrCode(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
-        QrCodeObject result = qrCodeController.deleteQrCode(idQrCode);
-        return ResponseEntity.ok().body(result);
+        qrCodeController.deleteQrCode(idQrCode);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/generateAndDownloadQRCode")
