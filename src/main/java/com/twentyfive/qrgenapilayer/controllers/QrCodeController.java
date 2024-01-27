@@ -55,14 +55,12 @@ public class QrCodeController {
 
     @GetMapping("/generateQRCode/{codeText}/{description}")
     public ResponseEntity<Object> generateQrCode(@PathVariable String codeText, @PathVariable String description) {
-        String username = authenticationService.getUsername();
         byte[] result = qrCodeController.generateQrCode(codeText, description);
         return ResponseEntity.ok().body(result);
     }
 
     @DeleteMapping("/delete/{idQrCode}")
     public ResponseEntity<QrCodeObject> deleteQrCode(@PathVariable String idQrCode) {
-        String username = authenticationService.getUsername();
         qrCodeController.deleteQrCode(idQrCode);
         return ResponseEntity.ok().build();
     }
@@ -76,14 +74,12 @@ public class QrCodeController {
 
     @PutMapping("/update/{idQrCode}")
     public ResponseEntity<Object> updateQrCode(@PathVariable String idQrCode ,@RequestBody QrCodeObject qrCodeObject) {
-        String username = authenticationService.getUsername();
         QrCodeObject result = qrCodeController.updateQrCode(idQrCode ,qrCodeObject);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/download/{idQrCode}")
     public ResponseEntity<Object> downloadQrCodeBase64(@PathVariable String idQrCode) {
-        String username = authenticationService.getUsername();
         ResponseImage result = qrCodeController.downloadQrCodeBase64(idQrCode);
         return ResponseEntity.ok().body(result);
     }

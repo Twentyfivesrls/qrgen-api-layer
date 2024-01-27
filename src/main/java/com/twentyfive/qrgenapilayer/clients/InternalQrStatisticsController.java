@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "InternalQrStatisticsController", url = "http://tomcat-twentyfive-db:8091/twentyfive-db/qr_statistics")
+@FeignClient(name = "InternalQrStatisticsController", url = "${twentyfive.db.url}/qr_statistics")
 public interface InternalQrStatisticsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/all")

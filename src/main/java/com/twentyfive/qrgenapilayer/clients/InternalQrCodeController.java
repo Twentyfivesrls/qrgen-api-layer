@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "InternalQrCodeController", url = "http://tomcat-twentyfive-db:8091/twentyfive-db/qr_code")
+@FeignClient(name = "InternalQrCodeController", url = "${twentyfive.db.url}/qr_code")
 public interface InternalQrCodeController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/allByUsername")

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.2.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.twentyfive</groupId>
@@ -14,9 +14,11 @@
     <packaging>war</packaging>
     <name>qrgen-api-layer</name>
     <description>qrgen-api-layer</description>
+
     <properties>
         <java.version>17</java.version>
     </properties>
+
     <dependencies>
 
         <dependency>
@@ -45,7 +47,7 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <version>4.0.4</version>
+            <version>4.1.0</version>
         </dependency>
 
         <dependency>
@@ -56,13 +58,13 @@
         <dependency>
             <groupId>com.twentyfive</groupId>
             <artifactId>authorization-flow</artifactId>
-            <version>0.0.12</version>
+            <version>0.0.16</version>
         </dependency>
 
         <dependency>
             <groupId>com.twentyfive</groupId>
             <artifactId>twentyfive-models</artifactId>
-            <version>0.0.20</version>
+            <version>0.0.33</version>
         </dependency>
 
     </dependencies>
