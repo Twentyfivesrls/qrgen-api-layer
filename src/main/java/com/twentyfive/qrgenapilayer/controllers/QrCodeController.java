@@ -66,9 +66,9 @@ public class QrCodeController {
     }
 
     @PostMapping("/generateAndDownloadQRCode")
-    public ResponseEntity<Object> download(@RequestBody QrCodeObject qrCodeObject) {
+    public ResponseEntity<QrCodeObject> download(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        Object result = qrCodeController.download(qrCodeObject, username);
+        QrCodeObject result = qrCodeController.download(qrCodeObject, username);
         return ResponseEntity.ok().body(result);
     }
 

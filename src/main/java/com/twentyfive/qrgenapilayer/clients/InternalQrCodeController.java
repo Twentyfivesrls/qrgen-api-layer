@@ -32,7 +32,7 @@ public interface InternalQrCodeController {
     QrCodeObject deleteQrCode(@PathVariable String idQrCode);
 
     @RequestMapping(method = RequestMethod.POST, value = "/generateAndDownloadQRCode")
-    Object download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
+    QrCodeObject download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
 
     @RequestMapping(method = RequestMethod.PUT, value = "/update/{idQrCode}")
     QrCodeObject updateQrCode(@PathVariable String idQrCode, @RequestBody QrCodeObject qrCodeObject);
