@@ -11,32 +11,32 @@ import java.util.List;
 @FeignClient(name = "InternalQrCodeController", url = "${twentyfive.db.url}/qr_code")
 public interface InternalQrCodeController {
 
-    @RequestMapping(method = RequestMethod.GET, value = "/allByUsername")
+    @GetMapping("/allByUsername")
     Page<QrCodeObject> getAllQrCodeByUsername(@RequestParam(defaultValue = "0") int page,
                                               @RequestParam(defaultValue = "10") int size,
                                               @RequestParam("username") String username);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/qrCodeObjectById/{idQrCode}")
+    @GetMapping("/qrCodeObjectById/{idQrCode}")
     QrCodeObject getQrCodeById(@PathVariable String idQrCode);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/all")
+    @GetMapping("/all")
     List<QrCodeObject> all(@RequestParam("username") String username);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/save")
+    @PostMapping("/save")
     QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/generateQRCode/{codeText}/{description}")
+    @GetMapping("/generateQRCode/{codeText}/{description}")
     byte[] generateQrCode(@PathVariable String codeText, @PathVariable String description);
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/delete/{idQrCode}")
+    @DeleteMapping("/delete/{idQrCode}")
     QrCodeObject deleteQrCode(@PathVariable String idQrCode);
 
-    @RequestMapping(method = RequestMethod.POST, value = "/generateAndDownloadQRCode")
+    @PostMapping("/generateAndDownloadQRCode")
     QrCodeObject download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/update/{idQrCode}")
+    @PutMapping("/update/{idQrCode}")
     QrCodeObject updateQrCode(@PathVariable String idQrCode, @RequestBody QrCodeObject qrCodeObject);
 
-    @RequestMapping(method = RequestMethod.GET, value = "/download/{idQrCode}")
+    @GetMapping("/download/{idQrCode}")
     ResponseImage downloadQrCodeBase64(@PathVariable String idQrCode);
 }
