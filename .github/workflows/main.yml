@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   sonar-gate:
     runs-on: ubuntu-latest
