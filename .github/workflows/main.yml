@@ -38,7 +38,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=paybolt-be -Dsonar.projectName='paybolt-be'
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=qrgen-api-layer -Dsonar.projectName='qrgen-api-layer'
 
   build-and-deploy:
     if: ${{ false }} # this record is to be used to disable the deploy job and use only the sonar-gate job
