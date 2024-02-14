@@ -3,7 +3,6 @@ package com.twentyfive.qrgenapilayer.controllers;
 import com.twentyfive.authorizationflow.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrStatisticsController;
 import com.twentyfive.twentyfivemodel.models.qrGenModels.QrStatistics;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +13,13 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class QrStatisticsController {
 
-    @Autowired
-    private InternalQrStatisticsController qrStatisticsController;
+    private final InternalQrStatisticsController qrStatisticsController;
+    private final AuthenticationService authenticationService;
 
-
-    @Autowired
-    private AuthenticationService authenticationService;
+    public QrStatisticsController(InternalQrStatisticsController qrStatisticsController, AuthenticationService authenticationService) {
+        this.qrStatisticsController = qrStatisticsController;
+        this.authenticationService = authenticationService;
+    }
 
     @GetMapping("/all")
     public ResponseEntity<Object> getAllQrStatistics() {
