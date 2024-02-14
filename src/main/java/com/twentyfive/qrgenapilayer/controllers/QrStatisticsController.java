@@ -13,39 +13,39 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class QrStatisticsController {
 
-    private final InternalQrStatisticsController qrStatisticsController;
+    private final InternalQrStatisticsController internalQrStatisticsController;
     private final AuthenticationService authenticationService;
 
-    public QrStatisticsController(InternalQrStatisticsController qrStatisticsController, AuthenticationService authenticationService) {
-        this.qrStatisticsController = qrStatisticsController;
+    public QrStatisticsController(InternalQrStatisticsController internalQrStatisticsController, AuthenticationService authenticationService) {
+        this.internalQrStatisticsController = internalQrStatisticsController;
         this.authenticationService = authenticationService;
     }
 
     @GetMapping("/all")
     public ResponseEntity<Object> getAllQrStatistics() {
         String username = authenticationService.getUsername();
-        List<QrStatistics> result = qrStatisticsController.getAllQrStatistics();
+        List<QrStatistics> result = internalQrStatisticsController.getAllQrStatistics();
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/qrStatisticsById/{idQrCode}")
     public ResponseEntity<Object> getQrStatisticsById(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
-        List<QrStatistics> result = qrStatisticsController.getQrStatisticsById(idQrCode);
+        List<QrStatistics> result = internalQrStatisticsController.getQrStatisticsById(idQrCode);
         return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/qrStatisticsById/desktopSize/{idQrCode}")
     public ResponseEntity<Object> getQrStatisticsByIdDesktopSize(@PathVariable String idQrCode) {
         String username = authenticationService.getUsername();
-        Integer result = qrStatisticsController.getQrStatisticsByIdDesktopSize(idQrCode);
+        Integer result = internalQrStatisticsController.getQrStatisticsByIdDesktopSize(idQrCode);
         return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/save")
     public ResponseEntity<Object> saveQrStatistics(@RequestBody QrStatistics qrStatistics) {
         String username = authenticationService.getUsername();
-        QrStatistics result = qrStatisticsController.saveQrStatistics(qrStatistics);
+        QrStatistics result = internalQrStatisticsController.saveQrStatistics(qrStatistics);
         return ResponseEntity.ok().body(result);
     }
 }
