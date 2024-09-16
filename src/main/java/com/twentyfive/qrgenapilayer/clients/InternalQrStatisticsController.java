@@ -1,11 +1,11 @@
 package com.twentyfive.qrgenapilayer.clients;
 
-import com.twentyfive.twentyfivemodel.models.qrGenModels.QrStatistics;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrStatistics;
 
 import java.util.List;
 

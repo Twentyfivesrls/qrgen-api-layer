@@ -63,8 +63,19 @@
 
         <dependency>
             <groupId>com.twentyfive</groupId>
-            <artifactId>twentyfive-models</artifactId>
-            <version>0.0.33</version>
+            <artifactId>twentyfive-adapters</artifactId>
+            <version>0.0.195</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mongodb</groupId>
+                    <artifactId>mongodb-driver-sync</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>

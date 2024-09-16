@@ -1,10 +1,10 @@
 package com.twentyfive.qrgenapilayer.clients;
 
 import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
-import com.twentyfive.twentyfivemodel.models.qrGenModels.QrCodeObject;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeObject;
 
 import java.util.List;
 

@@ -2,9 +2,9 @@ package com.twentyfive.qrgenapilayer.controllers;
 
 import com.twentyfive.authorizationflow.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrStatisticsController;
-import com.twentyfive.twentyfivemodel.models.qrGenModels.QrStatistics;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrStatistics;
 
 import java.util.List;
 

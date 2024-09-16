@@ -3,10 +3,12 @@ package com.twentyfive.qrgenapilayer.controllers;
 import com.twentyfive.authorizationflow.services.AuthenticationService;
 import com.twentyfive.qrgenapilayer.clients.InternalQrCodeController;
 import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
-import com.twentyfive.twentyfivemodel.models.qrGenModels.QrCodeObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeObject;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class QrCodeController {
 
+    private static final Logger log = LoggerFactory.getLogger(QrCodeController.class);
     private final InternalQrCodeController internalQrCodeController;
     private final AuthenticationService authenticationService;
 
@@ -67,6 +70,7 @@ public class QrCodeController {
     @PostMapping("/generateAndDownloadQRCode")
     public ResponseEntity<QrCodeObject> download(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
+        log.info(qrCodeObject.toString());
         QrCodeObject result = internalQrCodeController.download(qrCodeObject, username);
         return ResponseEntity.ok().body(result);
     }
