@@ -4,6 +4,7 @@ import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeGroup;
 import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeObject;
 
 import java.util.List;
@@ -39,4 +40,7 @@ public interface InternalQrCodeController {
 
     @GetMapping("/download/{idQrCode}")
     ResponseImage downloadQrCodeBase64(@PathVariable String idQrCode);
+
+    @PostMapping("/generateQrGroup")
+    List<QrCodeGroup> generateQrGroup(@RequestParam("username") String username, @RequestParam("ownerId") String ownerId);
 }

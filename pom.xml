@@ -64,7 +64,7 @@
         <dependency>
             <groupId>com.twentyfive</groupId>
             <artifactId>twentyfive-adapters</artifactId>
-            <version>0.0.199</version>
+            <version>0.0.232</version>
         </dependency>
 
         <dependency>

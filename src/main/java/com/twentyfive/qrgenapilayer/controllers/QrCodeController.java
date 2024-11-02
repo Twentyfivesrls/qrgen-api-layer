@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeGroup;
 import twentyfive.twentyfiveadapter.models.qrGenModels.QrCodeObject;
 
 import java.util.List;
@@ -84,6 +85,12 @@ public class QrCodeController {
     @GetMapping("/download/{idQrCode}")
     public ResponseEntity<Object> downloadQrCodeBase64(@PathVariable String idQrCode) {
         ResponseImage result = internalQrCodeController.downloadQrCodeBase64(idQrCode);
+        return ResponseEntity.ok().body(result);
+    }
+
+    @PostMapping("/generateQrGroup")
+    public ResponseEntity<Object> generateQrGroup(@RequestParam ("username") String username, @RequestParam("ownerId") String ownerId) {
+        List<QrCodeGroup> result = internalQrCodeController.generateQrGroup(username, ownerId);
         return ResponseEntity.ok().body(result);
     }
 }
