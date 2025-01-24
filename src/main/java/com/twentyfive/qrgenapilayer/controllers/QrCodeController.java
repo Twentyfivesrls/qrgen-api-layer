@@ -5,6 +5,7 @@ import com.twentyfive.qrgenapilayer.clients.InternalQrCodeController;
 import com.twentyfive.twentyfivemodel.dto.qrGenDto.ResponseImage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import java.util.List;
 @RequestMapping("/qr_code")
 @CrossOrigin(origins = "*")
 public class QrCodeController {
+
+    @Value("${fullyenabled.keycloak.role}")
+    private String fullyEnabledRole;
 
     private static final Logger log = LoggerFactory.getLogger(QrCodeController.class);
     private final InternalQrCodeController internalQrCodeController;
@@ -51,7 +55,8 @@ public class QrCodeController {
     @PostMapping("/save")
     public ResponseEntity<Object> saveQrCode(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        QrCodeObject result = internalQrCodeController.saveQrCode(qrCodeObject, username);
+        boolean isFullyEnabled = authenticationService.getRealmRoles().containsKey(fullyEnabledRole);
+        QrCodeObject result = internalQrCodeController.saveQrCode(qrCodeObject, username, isFullyEnabled);
         return ResponseEntity.ok().body(result);
     }
 
@@ -70,14 +75,17 @@ public class QrCodeController {
     @PostMapping("/generateAndDownloadQRCode")
     public ResponseEntity<QrCodeObject> download(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
+        boolean isFullyEnabled = authenticationService.getRealmRoles().containsKey(fullyEnabledRole);
         log.info(qrCodeObject.toString());
-        QrCodeObject result = internalQrCodeController.download(qrCodeObject, username);
+        QrCodeObject result = internalQrCodeController.download(qrCodeObject, username, isFullyEnabled);
         return ResponseEntity.ok().body(result);
     }
 
     @PutMapping("/update/{idQrCode}")
-    public ResponseEntity<Object> updateQrCode(@PathVariable String idQrCode ,@RequestBody QrCodeObject qrCodeObject) {
-        QrCodeObject result = internalQrCodeController.updateQrCode(idQrCode ,qrCodeObject);
+    //TODO: controll qrcodemodel
+    public ResponseEntity<Object> updateQrCode(@PathVariable String idQrCode, @RequestBody QrCodeObject qrCodeObject) {
+        boolean isFullyEnabled = authenticationService.getRealmRoles().containsKey(fullyEnabledRole);
+        QrCodeObject result = internalQrCodeController.updateQrCode(idQrCode, isFullyEnabled, qrCodeObject);
         return ResponseEntity.ok().body(result);
     }
 

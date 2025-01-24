@@ -23,7 +23,7 @@ public interface InternalQrCodeController {
     List<QrCodeObject> all(@RequestParam("username") String username);
 
     @PostMapping("/save")
-    QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
+    QrCodeObject saveQrCode(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username, @RequestParam("isFullyEnabled") boolean isFullyEnabled);
 
     @GetMapping("/generateQRCode/{codeText}/{description}")
     byte[] generateQrCode(@PathVariable String codeText, @PathVariable String description);
@@ -32,10 +32,10 @@ public interface InternalQrCodeController {
     QrCodeObject deleteQrCode(@PathVariable String idQrCode);
 
     @PostMapping("/generateAndDownloadQRCode")
-    QrCodeObject download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username);
+    QrCodeObject download(@RequestBody QrCodeObject qrCodeObject, @RequestParam("username") String username, @RequestParam("isFullyEnabled") boolean isFullyEnabled);
 
     @PutMapping("/update/{idQrCode}")
-    QrCodeObject updateQrCode(@PathVariable String idQrCode, @RequestBody QrCodeObject qrCodeObject);
+    QrCodeObject updateQrCode(@PathVariable String idQrCode, @RequestParam("isFullyEnabled") boolean isFullyEnabled, @RequestBody QrCodeObject qrCodeObject);
 
     @GetMapping("/download/{idQrCode}")
     ResponseImage downloadQrCodeBase64(@PathVariable String idQrCode);
