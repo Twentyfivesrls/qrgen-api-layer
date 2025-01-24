@@ -55,7 +55,7 @@ public class QrCodeController {
     @PostMapping("/save")
     public ResponseEntity<Object> saveQrCode(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        boolean isFullyEnabled = authenticationService.getRealmRoles().containsKey(fullyEnabledRole);
+        boolean isFullyEnabled = this.extractIsFullyEnabled();
         QrCodeObject result = internalQrCodeController.saveQrCode(qrCodeObject, username, isFullyEnabled);
         return ResponseEntity.ok().body(result);
     }
@@ -75,7 +75,7 @@ public class QrCodeController {
     @PostMapping("/generateAndDownloadQRCode")
     public ResponseEntity<QrCodeObject> download(@RequestBody QrCodeObject qrCodeObject) {
         String username = authenticationService.getUsername();
-        boolean isFullyEnabled = authenticationService.getRealmRoles().containsKey(fullyEnabledRole);
+        boolean isFullyEnabled = this.extractIsFullyEnabled();
         log.info(qrCodeObject.toString());
         QrCodeObject result = internalQrCodeController.download(qrCodeObject, username, isFullyEnabled);
         return ResponseEntity.ok().body(result);
@@ -93,5 +93,10 @@ public class QrCodeController {
     public ResponseEntity<Object> downloadQrCodeBase64(@PathVariable String idQrCode) {
         ResponseImage result = internalQrCodeController.downloadQrCodeBase64(idQrCode);
         return ResponseEntity.ok().body(result);
+    }
+
+    private boolean extractIsFullyEnabled() {
+        List<String> a = (List<String>) authenticationService.getRealmRoles().get("roles");
+        return a.contains(fullyEnabledRole);
     }
 }
